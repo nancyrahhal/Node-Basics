@@ -34,13 +34,14 @@ function startApp(name){
  * @returns {void}
  */
 function onDataReceived(text) {
-  if (text === 'quit\n'|| text=== 'exit\n') {
+  text=text.trim();
+  if (text === 'quit'|| text=== 'exit') {
     quit();
   }
-  else if(text === 'hello\n'){
-    hello();
+  else if(text.startsWith('hello')){
+    hello(text);
   }
-  else if(text=== 'help\n'){
+  else if(text==='help'){
     help();
   }
   else{
@@ -66,8 +67,24 @@ function unknownCommand(c){
  *
  * @returns {void}
  */
-function hello(){
-  console.log('hello!')
+function hello(helloCommand){
+  helloCommandArray=helloCommand.split(" ");//split input into array of words
+  if(helloCommandArray[0]==="hello"){//check if the first word is "hello", for example not "hellooo"
+  if(helloCommandArray[1]){//if second word after "hello" is defined, then print hello with this word!
+    if(helloCommandArray.length>=2){//for multiple words after hello
+      helloCommandString=helloCommandArray.slice(1).join(" ");//join these words into 1 string
+      console.log(`hello ${helloCommandString}!`)
+    }
+    else{//for single word after hello
+      console.log(`hello ${helloCommandArray[1]}!`)
+    }
+  }
+  else{//if the second word doesn't exist, then will handle an emty state
+    console.log(`hello!`)
+  }
+}else{//if the first word is not strictly equal to "hello", it will call the unknown function
+  unknownCommand(helloCommand);
+}
 }
 
 

@@ -102,11 +102,12 @@ function quit(){
  * Lists all the possible commands
  * hello to say hello
  * quit/exit to exit the application
+ * hello with something to say 'hello something!'
  *
  * @returns {void}
  */
 function help(){
-  console.log(`Possible commands:\n1.hello\n2.quit\n3.exit\n4.help`)
+  console.log(`Possible commands:\n1.hello\n2.quit\n3.exit\n4.hello "message"\n5.help`)
 }
 
 
